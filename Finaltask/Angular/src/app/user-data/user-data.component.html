@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+</head>
+
+<body>
+    
+    <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button class="btn btn-outline-danger">Logout</button>
+      </form>
+    <div class="container">
+        <div class="card mt-5" style="align-items: center;">
+          <h1>Task Dashboard</h1>
+        </div>
+      
+        <div class="card mt-5" style="padding: 20px;">
+          <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+            <div class="form-group">
+                <label>Task id</label>
+                <input type="text" name="task_id" class="form-control" id="task_id" #task_id (ngModel)="task_id" required>
+        </div>
+
+        <div class="form-group">
+                <label>Task Name</label>
+                <input type="text" name="task_name" class="form-control" #task_name (ngModel)="task_name" required>
+        </div>
+
+            <div class="form-group">
+                <label>Task Status</label>
+                <input type="text" name="task_status" class="form-control" #task_status pattern="^[A-Za-z][A-Za-z ]+$" (ngModel)="task_status" required>
+            </div>
+
+            <div class="form-group">
+                <label>Start Time</label>
+                <input type="time" name="start_time" class="form-control" #start_time  (ngModel)="start_time" required>
+            </div>
+
+          <div class="form-group">
+              <label>End Time</label>
+              <input type="time" name="end_time" class="form-control" #end_time  (ngModel)="end_time" required>
+          </div>
+
+        <div class="form-group">
+            <label>Created Date</label>
+            <input type="date" name="created_date" class="form-control" #created_date  (ngModel)="created_date" required>
+        </div>
+
+      <div class="form-group">
+          <label>Approval Status</label>
+          <input type="text" name="approval_status" class="form-control" #approval_status  (ngModel)="approval_status" required>
+      </div>
+
+      <div class="form-group">
+        <label>Assigned Manager</label>
+        <input type="text" name="assigned_manager" class="form-control" #assigned_manager  (ngModel)="assigned_manager" required>
+      </div>
+
+      <div class="form-group">
+        <label>Task Description</label>
+        <input type="text" name="task_description" class="form-control" #task_description  (ngModel)="task_description" required>
+      </div>
+
+            <div class="form-group">
+              <input type="submit" value="Register" class="btn btn-primary w-100">
+            </div>
+          </form>
+        </div>
+    
+  <table class="table table-striped">
+      <thead>
+          <tr>
+            <th>Task id</th>
+              <th>Task name</th>
+              <th>Status</th>
+              <th>Start time</th>
+              <th>End time</th>
+              <th>Created date</th>
+              <th>Approval status</th>
+              <th>Assigned manager</th>
+              <th>Task Description</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let item of taskDetails | pipe: searchText; index as i">
+            <td>{{item.task_id}}</td>
+            <td>{{item.task_name}}</td>
+              <td>{{item.task_status}}</td>
+              <td>{{item.start_time}}</td>
+              <td>{{item.end_time}}</td>
+              <td>{{item.created_date}}</td>
+              <td>{{item.approval_status}}</td>
+              <td>{{item.assigned_manager}}</td>
+              <td>{{item.task_description}}</td>
+                  <!--Edit and Delete User Fields-->
+                  <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    (click)="edit(item)">Edit</button></td>
+                <td><button type="button" class="btn btn-danger" (click)="deleteuser(item)">Delete</button></td>
+          </tr>
+          <!-- <div class="form-group">
+            <input type="submit" value="Update" (click)="updateuser(item)" class="btn btn-primary w-100">
+          </div> -->
+
+      </tbody>
+  </table>
+
+
+  <!-- Button trigger modal -->
+
+
+  <!--Popup Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">USER REGISTRATION</h5>
+                  <!--Close Button-->
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <!--User Registration Form-->
+                  <form #updateForm="ngForm" (ngSubmit)="updateuser()">
+                    
+                    <div class="form-group">
+                            <label>Task id</label>
+                            <input type="text" name="task_id" class="form-control"  #task_id [(ngModel)]="UserValue.task_id" required>
+                    </div>
+
+                    <div class="form-group">
+                            <label>Task Name</label>
+                            <input type="text" name="task_name" class="form-control" #task_name [(ngModel)]="UserValue.task_name" required>
+                    </div>
+
+                        <div class="form-group">
+                            <label>Task Status</label>
+                            <input type="text" name="task_status" class="form-control" #task_status pattern="^[A-Za-z][A-Za-z ]+$" [(ngModel)]="UserValue.task_status" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Start Time</label>
+                            <input type="time" name="start_time" class="form-control" #start_time  [(ngModel)]="UserValue.start_time" required>
+                        </div>
+
+                      <div class="form-group">
+                          <label>End Time</label>
+                          <input type="time" name="end_time" class="form-control" #end_time  [(ngModel)]="UserValue.end_time" required>
+                      </div>
+
+                    <div class="form-group">
+                        <label>Created Date</label>
+                        <input type="date" name="created_date" class="form-control" #created_date  [(ngModel)]="UserValue.created_date" required>
+                    </div>
+
+                  <div class="form-group">
+                      <label>Approval Status</label>
+                      <input type="text" name="approval_status" class="form-control" #approval_status  [(ngModel)]="UserValue.approval_status" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Assigned Manager</label>
+                    <input type="text" name="assigned_manager" class="form-control" #assigned_manager  [(ngModel)]="UserValue.assigned_manager" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Task Description</label>
+                    <input type="text" name="task_description" class="form-control" #task_description  [(ngModel)]="UserValue.task_description" required>
+                  </div>
+
+                  <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-primary w-100">
+                  </div>
+
+            </form>
+                  <!--Form Ends-->
+              </div>
+          </div>
+      </div>
+  </div></div>
+
+  <br>
+  <button type="button" class="btn btn-success" routerLink='/dashboard'>User Dashboard</button>
+</body>
+
+</html>

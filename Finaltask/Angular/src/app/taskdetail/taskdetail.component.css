@@ -1,0 +1,10 @@
+    .table td{
+        margin: auto;
+    }
+
+.dashboard-head{
+    border-radius: 5px;
+    width: 50%;
+    margin: 0px 50%;
+    float: none;
+}

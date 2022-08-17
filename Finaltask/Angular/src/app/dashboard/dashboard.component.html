@@ -1,0 +1,82 @@
+
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+
+        <head>
+          <meta charset="UTF-8">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+          <link rel="stylesheet" href="dashboard.component.css">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        </head>
+
+        <body>
+          <div class="sidebar">
+            <div class="logo-details">
+              <i class='bx bxl-c-plus-plus'></i>
+              <span><i class="bi bi-person-circle"></i></span>
+              <span><br><br></span>
+              <span class="logo_name">User Dashboard</span>
+            </div>
+
+            <ul class="nav-links">
+
+              <li>
+                <a href="/tasklist">
+                  <i class='bx bx-coin-stack'></i>
+                  <i class="bi bi-list-stars"></i>
+                  <span class="links_name">Task Details</span>
+                </a>
+              </li>
+              <li>
+                <a href="/user-data">
+                  <i class='bx bx-coin-stack'></i>
+                  <i class="bi bi-node-plus-fill"></i>
+                  <span class="links_name">Create Task</span>
+                </a>
+              </li>
+              <li class="log_out">
+                <a href="/home">
+                  <i class='bx bx-log-out'></i>
+                  <i class="bi bi-box-arrow-right"></i>
+                  <span class="links_name">Log out</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <section class="home-section">
+
+
+<br><br><div class="sales-boxes">
+                <div class="recent-sales box">
+                  <div class="sales-details" style="margin-left: 17%;">
+                   <iframe src="http://localhost:4200/tasklist" style="border:0px #ffffff none;" name="myiFrame" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" height="410px" width="770px" allowfullscreen></iframe>
+                  </div>
+                </div>
+
+            </div>
+      <div><br></div>
+      <div class="sales-boxes">
+        <div class="recent-sales box right-side">
+          <div class="sales-details" style="margin-left: 17%;">
+            <iframe src="http://localhost:4200/user-data" style="border:0px #ffffff none;" name="myiFrame" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" height="500px" width="770px" allowfullscreen></iframe>
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <script>
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".sidebarBtn");
+    sidebarBtn.onclick = function () {
+      sidebar.classList.toggle("active");
+      if (sidebar.classList.contains("active")) {
+        sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+      } else
+        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+    }
+  </script>
+
+
+</body>
+
+</html>
